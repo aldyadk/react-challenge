@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { BrowserRouter } from 'react-router-dom'
 
+import WelcomePage from './components/WelcomePage'
 import DataTable from './components/DataTable'
 import logo from './logo.svg';
 import './App.css';
@@ -9,21 +11,15 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      title: 'Pokeapi - The Pokemon Api',
-      // data: [{asd:'asd'},{qwe:'qwe'}]
-      data: ['asd','qwe']
+      title: 'Star Wars Char',
+      data: []
     }
   }
 
   componentDidMount(){
     axios.get('http://swapi.co/api/people/')
-    // axios.get('http://pokeapi.co/api/v2/pokemon/')
     .then(result=>{
       var data = result.data.results
-      // data = data.map(datum=>{
-      //   return datum.name
-      // })
-      console.log(data);
       this.setState({
         data:data
       })
@@ -37,14 +33,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>{this.state.title}</h2>
+      <BrowserRouter>
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>{this.state.title}</h2>
+          </div>
+          
+          <WelcomePage />
+          <DataTable data={this.state.data}/>
         </div>
-        <button onClick={this.getPoke}>Click Me!</button>
-        <DataTable data={this.state.data}/>
-      </div>
+      </BrowserRouter>
     );
   }
 }

@@ -1,12 +1,13 @@
 import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class DataTable extends React.Component {
   render() {
     return (
       <div>
-        <table className="striped">
+        <table className="striped highlight bordered">
           <thead>
-            <tr>
+            <tr className="blue-grey darken-2" style={{color:'white'}}>
               <th>No</th>
               <th>Name</th>
               <th>Gender</th>

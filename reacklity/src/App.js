@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import WelcomePage from './components/WelcomePage'
 import DataTable from './components/DataTable'
@@ -39,9 +39,8 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>{this.state.title}</h2>
           </div>
-          
-          <WelcomePage />
-          <DataTable data={this.state.data}/>
+          <Route exact path="/" component={WelcomePage}/>
+          <Route exact path="/chars" component={(props)=> <DataTable data={this.state.data} {...props}/>} />
         </div>
       </BrowserRouter>
     );

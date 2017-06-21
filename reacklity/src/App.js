@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Provider, connect } from 'react-redux'
+import { Provider } from 'react-redux'
 
 import store from './store/config'
 import AppHeader from './components/AppHeader'
 import WelcomePage from './components/WelcomePage'
 import Page404 from './components/Page404'
 import DataTable from './components/DataTable'
+import AppFooter from './components/AppFooter'
 import './App.css';
 
 class App extends Component {
@@ -20,9 +21,10 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={WelcomePage}/>
               {/*<Route exact path="/chars" component={(props)=> <DataTable data={this.state.data} {...props}/>} /> */}
-              <Route component={DataTable} />
+              <Route exact path="/list" component={DataTable} />
               <Route component={Page404} />
             </Switch>
+            <Route component={AppFooter} />
           </div>
         </BrowserRouter>
       </Provider>

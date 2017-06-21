@@ -6,7 +6,7 @@ class Page404 extends React.Component {
     return (
       <div>
         <h1>Sorry, page not found (yet)!</h1>
-        <Link to="/chars"><button style={{padding:10,backgroundColor:'#025A6F',color:'white'}}>Back to chars page!</button></Link>
+        <Link to="/"><button style={{padding:10,backgroundColor:'#025A6F',color:'white'}}>Back to home page!</button></Link>
       </div>
     );
   }

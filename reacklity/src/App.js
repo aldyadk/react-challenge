@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
+import store from './store/config'
 import WelcomePage from './components/WelcomePage'
+import Page404 from './components/Page404'
 import DataTable from './components/DataTable'
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      title: 'Star Wars Char',
+      title: store.getState().title,
       data: []
     }
   }
@@ -33,16 +35,21 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>{this.state.title}</h2>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <div className="App-header">
+              <Link to="/"><img alt="legotroopimage" src='https://cdn0.iconfinder.com/data/icons/star-wars-3/154/droid-helmet-soldier-star-wars-128.png' /></Link>
+              <h2>{this.state.title}</h2>
+            </div>
+            <Switch>
+              <Route exact path="/" component={WelcomePage}/>
+              <Route exact path="/chars" component={(props)=> <DataTable data={this.state.data} {...props}/>} />
+              <Route component={Page404} />
+            </Switch>
           </div>
-          <Route exact path="/" component={WelcomePage}/>
-          <Route exact path="/chars" component={(props)=> <DataTable data={this.state.data} {...props}/>} />
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

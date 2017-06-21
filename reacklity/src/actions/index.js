@@ -1,12 +1,20 @@
-export const tambahAction = () => {
+export const userSubmit = (user) => {
   return {
-    type: 'TAMBAH_UMUR',
+    type: 'SUBMIT_USER',
+    payload: user,
   };
 }
 
-export const ubahNamaAction = (newName) => {
+export const userEdit = (user) => {
   return {
-    type: 'UBAH_NAMA',
-    payload: newName,
+    type: 'UBAH_USER',
+    payload: user,
+  };
+}
+
+export const dataLoad = (data) => {
+  return {
+    type: 'LOAD_DATA',
+    payload: data,
   };
 }
